@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security: The Comprehensive Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-item.active {
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* CIA Triad Animation */
+        .cia-container:hover .cia-card {
+            transform: scale(1.05);
+        }
+        
+        /* Packet Animation */
+        .packet-line {
+            position: relative;
+            height: 4px;
+            background: #e5e7eb;
+            overflow: hidden;
+        }
+        .packet {
+            position: absolute;
+            width: 20px;
+            height: 8px;
+            background: #3b82f6;
+            top: -2px;
+            border-radius: 4px;
+            animation: movePacket 2s infinite linear;
+        }
+        @keyframes movePacket {
+            0% { left: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+
+        /* Firewall Animation */
+        .firewall-shield {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 h-screen flex overflow-hidden">
+
+    <!-- Mobile Overlay for Sidebar -->
+    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
+
+    <!-- Sidebar Navigation -->
+    <!-- Changed: Absolute on mobile, relative on desktop. Added transform logic for drawer effect. -->
+    <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col h-full flex-shrink-0 transition-transform duration-300 z-50 absolute md:relative -translate-x-full md:translate-x-0 shadow-2xl md:shadow-none" id="sidebar">
+        <div class="p-6 border-b border-slate-700 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-blue-500 flex items-center justify-center text-white font-bold">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1 class="text-white font-bold text-lg tracking-wide">CyberGuide</h1>
+            </div>
+            <!-- Close button for mobile -->
+            <button onclick="toggleSidebar()" class="md:hidden text-slate-400 hover:text-white">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto p-4 space-y-2">
+            <button onclick="showSection('unit-a')" class="nav-item active w-full text-left px-4 py-3 hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-3">
+                <i class="fas fa-globe w-5"></i>
+                <div>
+                    <span class="block text-sm font-semibold">Unit A</span>
+                    <span class="text-xs opacity-70">Intro to Cyber Security</span>
+                </div>
+            </button>
+            <button onclick="showSection('unit-b')" class="nav-item w-full text-left px-4 py-3 hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-3">
+                <i class="fas fa-network-wired w-5"></i>
+                <div>
+                    <span class="block text-sm font-semibold">Unit B</span>
+                    <span class="text-xs opacity-70">Network Defence Tools</span>
+                </div>
+            </button>
+            <button onclick="showSection('unit-c')" class="nav-item w-full text-left px-4 py-3 hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-3">
+                <i class="fas fa-user-secret w-5"></i>
+                <div>
+                    <span class="block text-sm font-semibold">Unit C</span>
+                    <span class="text-xs opacity-70">Cyber Crime & Law</span>
+                </div>
+            </button>
+            <button onclick="showSection('unit-d')" class="nav-item w-full text-left px-4 py-3 hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-3">
+                <i class="fas fa-project-diagram w-5"></i>
+                <div>
+                    <span class="block text-sm font-semibold">Unit D</span>
+                    <span class="text-xs opacity-70">Security Landscape</span>
+                </div>
+            </button>
+            <button onclick="showSection('unit-e')" class="nav-item w-full text-left px-4 py-3 hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-3">
+                <i class="fas fa-mobile-alt w-5"></i>
+                <div>
+                    <span class="block text-sm font-semibold">Unit E</span>
+                    <span class="text-xs opacity-70">Device Security</span>
+                </div>
+            </button>
+        </nav>
+
+        <div class="p-4 border-t border-slate-700">
+            <div class="bg-slate-800 rounded p-3 text-xs text-center">
+                <p class="mb-2">Keep your systems updated!</p>
+                <div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-green-500 h-full w-3/4"></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 h-full overflow-y-auto relative scroll-smooth bg-gray-50 w-full">
+        
+        <!-- Mobile Header -->
+        <div class="md:hidden bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0 z-30 shadow-md">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-shield-alt text-blue-500"></i>
+                <span class="font-bold">CyberGuide</span>
+            </div>
+            <button onclick="toggleSidebar()" class="text-white p-2">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <div class="max-w-5xl mx-auto p-4 md:p-8 lg:p-12 pb-24">
+            
+            <!-- Unit A -->
+            <section id="unit-a" class="content-section active">
+                <div class="mb-8">
+                    <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Unit A</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Introduction to Cyber Security</h2>
+                    <p class="text-base md:text-lg text-slate-600 leading-relaxed">Understanding the architecture of cyberspace, how the internet connects us, and the fundamental principles of protecting digital assets.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-12">
+                    <div class="glass-panel bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mb-4">
+                            <i class="fas fa-cloud text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Defining Cyberspace</h3>
+                        <p class="text-slate-600 text-sm">A virtual environment with no geographical boundaries. It consists of four key layers:</p>
+                        <ul class="mt-4 space-y-2 text-sm text-slate-700">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> <strong>Physical:</strong> Hardware & Cables</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> <strong>Logical:</strong> Software & Protocols</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> <strong>Information:</strong> Data & Content</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> <strong>People:</strong> Users & Admins</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-panel bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                            <i class="fas fa-server text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Internet Infrastructure</h3>
+                        <p class="text-slate-600 text-sm mb-4">The internet relies on <strong>Packet Switching</strong>. Data is broken into small chunks and reassembled.</p>
+                        
+                        <!-- Mini Animation -->
+                        <div class="bg-slate-100 p-4 rounded-lg relative">
+                            <div class="flex justify-between text-xs font-bold text-slate-500 mb-1">
+                                <span>Source</span>
+                                <span>Destination</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-2">
+                                <i class="fas fa-laptop text-slate-700"></i>
+                                <div class="flex-1 mx-4 packet-line">
+                                    <div class="packet"></div>
+                                    <div class="packet" style="animation-delay: 0.5s"></div>
+                                    <div class="packet" style="animation-delay: 1s"></div>
+                                </div>
+                                <i class="fas fa-server text-slate-700"></i>
+                            </div>
+                            <div class="text-center text-xs text-slate-400">Data Packets in Transit</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 text-white rounded-2xl p-6 md:p-8 mb-12 relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold mb-6 text-center">The CIA Triad</h3>
+                        <div class="grid gap-6 md:grid-cols-3">
+                            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 cia-card transition-transform duration-300">
+                                <div class="text-green-400 text-3xl mb-4"><i class="fas fa-user-shield"></i></div>
+                                <h4 class="font-bold text-lg mb-2">Confidentiality</h4>
+                                <p class="text-sm text-slate-400">Keeping data secret from unauthorized users.</p>
+                            </div>
+                            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 cia-card transition-transform duration-300">
+                                <div class="text-blue-400 text-3xl mb-4"><i class="fas fa-file-contract"></i></div>
+                                <h4 class="font-bold text-lg mb-2">Integrity</h4>
+                                <p class="text-sm text-slate-400">Ensuring data is not altered or tampered with.</p>
+                            </div>
+                            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 cia-card transition-transform duration-300">
+                                <div class="text-yellow-400 text-3xl mb-4"><i class="fas fa-clock"></i></div>
+                                <h4 class="font-bold text-lg mb-2">Availability</h4>
+                                <p class="text-sm text-slate-400">Ensuring systems are running when needed.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decorative Background -->
+                    <div class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-blue-600 rounded-full blur-3xl opacity-20"></div>
+                </div>
+            </section>
+
+            <!-- Unit B -->
+            <section id="unit-b" class="content-section">
+                <div class="mb-8">
+                    <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Unit B</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Network Defence Tools</h2>
+                    <p class="text-base md:text-lg text-slate-600 leading-relaxed">Tools and techniques used to protect network infrastructure from unauthorized access.</p>
+                </div>
+
+                <!-- Firewall Interactive -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 mb-8 shadow-sm">
+                    <div class="flex flex-col lg:flex-row items-center gap-8">
+                        <div class="flex-1 w-full">
+                            <h3 class="text-2xl font-bold mb-4 flex items-center gap-3">
+                                <i class="fas fa-fire text-red-500"></i> Firewalls
+                            </h3>
+                            <p class="text-slate-600 mb-4">A security device that monitors traffic and decides whether to allow or block it based on rules.</p>
+                            <div class="space-y-3">
+                                <div class="bg-slate-50 p-3 rounded border-l-4 border-blue-500">
+                                    <strong>Stateless:</strong> Inspects packets in isolation. Fast but less secure.
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded border-l-4 border-purple-500">
+                                    <strong>Stateful:</strong> Remembers the context of connections. Smarter and more secure.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-1/3 flex justify-center">
+                            <!-- Responsive Diagram -->
+                            <div class="relative flex items-center">
+                                <i class="fas fa-globe text-3xl md:text-4xl text-slate-400"></i>
+                                <!-- Responsive connector lines -->
+                                <div class="mx-2 md:mx-4 w-8 md:w-24 h-1 bg-slate-200"></div>
+                                <div class="w-14 h-20 md:w-16 md:h-24 bg-red-500 rounded flex items-center justify-center text-white text-xl md:text-2xl shadow-lg firewall-shield z-10">
+                                    <i class="fas fa-bricks"></i>
+                                </div>
+                                <div class="mx-2 md:mx-4 w-8 md:w-24 h-1 bg-slate-200"></div>
+                                <i class="fas fa-laptop-house text-3xl md:text-4xl text-blue-600"></i>
+                                
+                                <!-- Animated particles being blocked -->
+                                <div class="absolute left-10 top-1/2 w-2 h-2 bg-red-500 rounded-full animate-ping hidden md:block"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 rounded-xl shadow-lg">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">VPN</h3>
+                            <i class="fas fa-tunnel text-blue-300 text-2xl"></i>
+                        </div>
+                        <p class="text-blue-100 text-sm mb-4">Virtual Private Networks create an encrypted "tunnel" over the public internet, masking your IP and protecting data.</p>
+                        <div class="bg-blue-900/50 p-3 rounded border border-blue-500/30 text-xs font-mono overflow-x-auto">
+                            > Establishing secure tunnel...<br>
+                            > Encrypting data packets...<br>
+                            > Connection Secure.
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 p-6 rounded-xl shadow-sm">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Snort (IDS)</h3>
+                            <i class="fas fa-bell text-yellow-500 text-2xl"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4">An open-source Network Intrusion Detection System. It acts like a digital burglar alarm, matching traffic against known attack signatures.</p>
+                        <ul class="text-sm space-y-2 text-slate-700">
+                            <li><i class="fas fa-search text-slate-400 mr-2"></i> Packet Sniffing</li>
+                            <li><i class="fas fa-file-code text-slate-400 mr-2"></i> Traffic Logging</li>
+                            <li><i class="fas fa-exclamation-triangle text-slate-400 mr-2"></i> Real-time Alerts</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Unit C -->
+            <section id="unit-c" class="content-section">
+                <div class="mb-8">
+                    <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Unit C</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Cyber Crime & Forensics</h2>
+                    <p class="text-base md:text-lg text-slate-600 leading-relaxed">Investigating the dark side of the web: crimes, attackers, and how we catch them.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-red-50 border border-red-100 p-6 rounded-xl">
+                        <h3 class="font-bold text-red-800 mb-2">Phishing</h3>
+                        <p class="text-sm text-red-600">Sending fraudulent emails pretending to be reputable companies to induce individuals to reveal personal information.</p>
+                    </div>
+                    <div class="bg-red-50 border border-red-100 p-6 rounded-xl">
+                        <h3 class="font-bold text-red-800 mb-2">Malware</h3>
+                        <p class="text-sm text-red-600">"Malicious Software" designed to disrupt, damage, or gain unauthorized access to a computer system.</p>
+                    </div>
+                    <div class="bg-red-50 border border-red-100 p-6 rounded-xl">
+                        <h3 class="font-bold text-red-800 mb-2">Hacking</h3>
+                        <p class="text-sm text-red-600">Identifying weakness in computer systems or networks to exploit its weaknesses to gain access.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-xl overflow-hidden flex flex-col lg:flex-row">
+                    <div class="bg-slate-800 text-white p-6 md:p-8 lg:w-1/3 flex flex-col justify-center text-center lg:text-left">
+                        <i class="fas fa-microscope text-4xl md:text-5xl mb-4 text-blue-400 mx-auto lg:mx-0"></i>
+                        <h3 class="text-2xl font-bold">Digital Forensics</h3>
+                    </div>
+                    <div class="p-6 md:p-8 lg:w-2/3">
+                        <p class="text-slate-600 mb-6">The recovery and investigation of material found in digital devices.</p>
+                        
+                        <h4 class="font-bold text-slate-800 mb-4">The Chain of Custody</h4>
+                        <!-- Responsive Chain: Vertical on mobile, Horizontal on Tablet+ -->
+                        <div class="flex flex-col md:flex-row items-start md:items-center gap-4 text-sm">
+                            <div class="flex-1 flex md:block items-center gap-3 w-full md:w-auto">
+                                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center md:mx-auto mb-0 md:mb-2 text-blue-600 font-bold flex-shrink-0">1</div>
+                                <span class="md:text-center md:block w-full">Collection</span>
+                            </div>
+                            
+                            <div class="hidden md:block h-0.5 w-8 bg-slate-300"></div>
+                            <!-- Mobile Arrow -->
+                            <div class="md:hidden w-0.5 h-6 bg-slate-300 ml-5"></div>
+
+                            <div class="flex-1 flex md:block items-center gap-3 w-full md:w-auto">
+                                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center md:mx-auto mb-0 md:mb-2 text-blue-600 font-bold flex-shrink-0">2</div>
+                                <span class="md:text-center md:block w-full">Examination</span>
+                            </div>
+                            
+                            <div class="hidden md:block h-0.5 w-8 bg-slate-300"></div>
+                             <!-- Mobile Arrow -->
+                             <div class="md:hidden w-0.5 h-6 bg-slate-300 ml-5"></div>
+
+                            <div class="flex-1 flex md:block items-center gap-3 w-full md:w-auto">
+                                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center md:mx-auto mb-0 md:mb-2 text-blue-600 font-bold flex-shrink-0">3</div>
+                                <span class="md:text-center md:block w-full">Analysis</span>
+                            </div>
+                            
+                            <div class="hidden md:block h-0.5 w-8 bg-slate-300"></div>
+                             <!-- Mobile Arrow -->
+                             <div class="md:hidden w-0.5 h-6 bg-slate-300 ml-5"></div>
+
+                            <div class="flex-1 flex md:block items-center gap-3 w-full md:w-auto">
+                                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center md:mx-auto mb-0 md:mb-2 text-blue-600 font-bold flex-shrink-0">4</div>
+                                <span class="md:text-center md:block w-full">Reporting</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Unit D -->
+             <section id="unit-d" class="content-section">
+                <div class="mb-8">
+                    <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Unit D</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Security Landscape</h2>
+                    <p class="text-base md:text-lg text-slate-600 leading-relaxed">Mapping the terminology and advanced threats facing nations and organizations.</p>
+                </div>
+
+                <div class="bg-slate-900 text-white rounded-xl p-6 md:p-8 mb-8">
+                    <h3 class="text-xl font-bold mb-6 text-center border-b border-slate-700 pb-4">Key Terminology</h3>
+                    <div class="grid gap-4">
+                        <div class="flex items-start gap-4 p-3 hover:bg-slate-800 rounded transition-colors">
+                            <i class="fas fa-meteor text-orange-500 mt-1 flex-shrink-0"></i>
+                            <div>
+                                <strong class="block text-orange-400">Threat</strong>
+                                <span class="text-slate-400 text-sm">A potential danger (e.g., hacker, virus).</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-3 hover:bg-slate-800 rounded transition-colors">
+                            <i class="fas fa-door-open text-yellow-500 mt-1 flex-shrink-0"></i>
+                            <div>
+                                <strong class="block text-yellow-400">Vulnerability</strong>
+                                <span class="text-slate-400 text-sm">A weakness or gap in security (e.g., weak password).</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-3 hover:bg-slate-800 rounded transition-colors">
+                            <i class="fas fa-exclamation-triangle text-red-500 mt-1 flex-shrink-0"></i>
+                            <div>
+                                <strong class="block text-red-400">Risk</strong>
+                                <span class="text-slate-400 text-sm">The potential for loss when a threat exploits a vulnerability.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl border-l-4 border-red-600 shadow-sm">
+                        <h3 class="font-bold text-lg mb-2">Cyber Warfare</h3>
+                        <p class="text-slate-600 text-sm">Internet-based conflict involving politically motivated attacks by a nation-state on another nation. The goal is often sabotage or espionage.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border-l-4 border-orange-500 shadow-sm">
+                        <h3 class="font-bold text-lg mb-2">Critical Infrastructure</h3>
+                        <p class="text-slate-600 text-sm">Securing assets essential for society, such as power grids, water supplies, and hospitals. Attacks here can cause physical harm.</p>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Unit E -->
+             <section id="unit-e" class="content-section">
+                <div class="mb-8">
+                    <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Unit E</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Device Security & Best Practices</h2>
+                    <p class="text-base md:text-lg text-slate-600 leading-relaxed">Practical steps to secure endpoints, mobiles, and personal data.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center group hover:-translate-y-1 transition-transform">
+                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-100 transition-colors">
+                            <i class="fas fa-key text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Password Policy</h3>
+                        <p class="text-xs text-slate-500">Complex passwords, no reuse, and enable Multi-Factor Authentication (MFA).</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center group hover:-translate-y-1 transition-transform">
+                        <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-100 transition-colors">
+                            <i class="fas fa-sync text-2xl text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Patch Management</h3>
+                        <p class="text-xs text-slate-500">Regularly update OS and software to fix security holes.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center group hover:-translate-y-1 transition-transform">
+                        <div class="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-100 transition-colors">
+                            <i class="fas fa-hdd text-2xl text-purple-600"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Data Backup</h3>
+                        <p class="text-xs text-slate-500">The 3-2-1 Rule: 3 copies, 2 media types, 1 offsite.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-slate-800 to-slate-900 text-white rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Secure your Wi-Fi</h3>
+                        <ul class="text-sm space-y-1 opacity-80">
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> Use WPA2 or WPA3</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> Change default passwords</li>
+                            <li><i class="fas fa-times text-red-400 mr-2"></i> Disable WPS</li>
+                        </ul>
+                    </div>
+                    <i class="fas fa-wifi text-6xl opacity-20"></i>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update nav styling
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Mobile: Close sidebar after selection
+            if(window.innerWidth < 768) {
+                toggleSidebar();
+            }
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            // Toggle translate class
+            if (sidebar.classList.contains('-translate-x-full')) {
+                // Open Sidebar
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                // Close Sidebar
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
