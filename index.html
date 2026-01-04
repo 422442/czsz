@@ -1,538 +1,747 @@
-<!DOCTYPE html>
+<! DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Security: The Comprehensive Guide</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>PRAYAS 2.0 - JEE 2025 Physics Lecture 04</title>
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js? features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        : root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #ecf0f1;
+            --white: #ffffff;
+            --text-dark: #34495e;
+            --border-color: #bdc3c7;
+            --success-color: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
-        }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .nav-item.active {
-            background-color: #3b82f6;
-            color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
-        }
-
-        .content-section {
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background:  linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
         
-        .content-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* CIA Triad Animation */
-        .cia-container:hover .cia-card {
-            transform: scale(1.05);
-        }
-        
-        /* Packet Animation */
-        .packet-line {
-            position: relative;
-            height: 4px;
-            background: #e5e7eb;
+        . container {
+            max-width:  1200px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
         }
-        .packet {
-            position: absolute;
-            width: 20px;
-            height: 8px;
-            background: #3b82f6;
-            top: -2px;
-            border-radius: 4px;
-            animation: movePacket 2s infinite linear;
+        
+        header {
+            background:  linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding:  40px;
+            text-align: center;
         }
-        @keyframes movePacket {
-            0% { left: 0%; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { left: 100%; opacity: 0; }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
-
-        /* Firewall Animation */
-        .firewall-shield {
-            animation: pulse 2s infinite;
+        
+        header h2 {
+            font-size: 1.5em;
+            font-weight: 400;
+            margin-bottom: 5px;
         }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        
+        header p {
+            font-size:  1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        . section {
+            margin-bottom:  50px;
+        }
+        
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-bottom:  20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        h4 {
+            color: var(--secondary-color);
+            font-size: 1.4em;
+            margin:  30px 0 15px 0;
+        }
+        
+        h5 {
+            color: var(--text-dark);
+            font-size: 1.2em;
+            margin:  20px 0 10px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .concept-box {
+            background: var(--light-bg);
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .formula {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border:  2px solid var(--border-color);
+            text-align: center;
+            font-size: 1.1em;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .important {
+            background: #f8d7da;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border-left: 5px solid var(--success-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .question-block {
+            background: var(--white);
+            border:  2px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .question-header {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding:  10px 15px;
+            margin: -25px -25px 20px -25px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+        
+        .solution {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed var(--border-color);
+        }
+        
+        . answer-box {
+            background: var(--success-color);
+            color: var(--white);
+            padding:  10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin-left:  30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .homework {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            padding: 30px;
+            border-radius:  10px;
+            margin:  30px 0;
+        }
+        
+        .homework h4 {
+            color: var(--white);
+            border-bottom: 2px solid var(--white);
+            padding-bottom: 10px;
+        }
+        
+        .homework ul {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .homework li:before {
+            content: "✓ ";
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .promo {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: var(--white);
+            padding: 40px;
+            border-radius:  10px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .promo h3 {
+            color: var(--white);
+            border:  none;
+        }
+        
+        footer {
+            background: var(--primary-color);
+            color:  var(--white);
+            text-align: center;
+            padding: 30px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table th,
+        table td {
+            padding: 12px;
+            border:  1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        table th {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+        
+        table tr:nth-child(even) {
+            background: var(--light-bg);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            header h2 {
+                font-size: 1.2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            h3 {
+                font-size: 1.4em;
+            }
         }
     </style>
 </head>
-<body class="text-slate-800 h-screen flex overflow-hidden">
-
-    <!-- Mobile Overlay for Sidebar -->
-    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
-
-    <!-- Sidebar Navigation -->
-    <!-- Changed: Absolute on mobile, relative on desktop. Added transform logic for drawer effect. -->
-    <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col h-full flex-shrink-0 transition-transform duration-300 z-50 absolute md:relative -translate-x-full md:translate-x-0 shadow-2xl md:shadow-none" id="sidebar">
-        <div class="p-6 border-b border-slate-700 flex items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded bg-blue-500 flex items-center justify-center text-white font-bold">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h1 class="text-white font-bold text-lg tracking-wide">CyberGuide</h1>
-            </div>
-            <!-- Close button for mobile -->
-            <button onclick="toggleSidebar()" class="md:hidden text-slate-400 hover:text-white">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
+<body>
+    <div class="container">
+        <header>
+            <h1>PRAYAS 2.0 FOR JEE 2025</h1>
+            <h2>Lecture-04: Physics - KTG and Thermodynamics</h2>
+            <p>By: Rajwant Singh (Physics Wallah)</p>
+        </header>
         
-        <nav class="flex-1 overflow-y-auto p-4 space-y-2">
-            <button onclick="showSection('unit-a')" class="nav-item active w-full text-left px-4 py-3 hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-3">
-                <i class="fas fa-globe w-5"></i>
-                <div>
-                    <span class="block text-sm font-semibold">Unit A</span>
-                    <span class="text-xs opacity-70">Intro to Cyber Security</span>
+        <div class="content">
+            <!-- Important Concepts Section -->
+            <div class="section">
+                <h3>Important Concepts</h3>
+                
+                <h4>1. Slope of Isothermal and Adiabatic Curve</h4>
+                
+                <div class="concept-box">
+                    <h5>Isothermal Process</h5>
+                    <p>For an isothermal process, temperature is constant. </p>
+                    <p>From the ideal gas equation: </p>
+                    <div class="formula">
+                        \[PV = nRT\]
+                    </div>
+                    <p>If \(T\) is constant, then: </p>
+                    <div class="formula">
+                        \[PV = \text{Constant}\]
+                    </div>
+                    <p>Differentiating with respect to \(V\):</p>
+                    <div class="formula">
+                        \[P\,dV + V\,dP = 0\]
+                        \[V\,dP = -P\,dV\]
+                    </div>
+                    <p>The slope of the P-V curve is \(\frac{dP}{dV}\):</p>
+                    <div class="formula">
+                        \[\text{Slope}_{\text{isothermal}} = \frac{dP}{dV} = -\frac{P}{V}\]
+                    </div>
                 </div>
-            </button>
-            <button onclick="showSection('unit-b')" class="nav-item w-full text-left px-4 py-3 hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-3">
-                <i class="fas fa-network-wired w-5"></i>
-                <div>
-                    <span class="block text-sm font-semibold">Unit B</span>
-                    <span class="text-xs opacity-70">Network Defence Tools</span>
+                
+                <div class="concept-box">
+                    <h5>Adiabatic Process</h5>
+                    <p>For an adiabatic process: </p>
+                    <div class="formula">
+                        \[PV^\gamma = \text{Constant}\]
+                    </div>
+                    <p>Differentiating with respect to \(V\):</p>
+                    <div class="formula">
+                        \[d(PV^\gamma) = dP(V^\gamma) + P(\gamma V^{\gamma-1}\,dV) = 0\]
+                        \[V^\gamma\,dP = -\gamma P V^{\gamma-1}\,dV\]
+                    </div>
+                    <p>The slope of the P-V curve is: </p>
+                    <div class="formula">
+                        \[\text{Slope}_{\text{adiabatic}} = \frac{dP}{dV} = -\gamma\frac{P V^{\gamma-1}}{V^\gamma} = -\gamma\frac{P}{V}\]
+                    </div>
                 </div>
-            </button>
-            <button onclick="showSection('unit-c')" class="nav-item w-full text-left px-4 py-3 hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-3">
-                <i class="fas fa-user-secret w-5"></i>
-                <div>
-                    <span class="block text-sm font-semibold">Unit C</span>
-                    <span class="text-xs opacity-70">Cyber Crime & Law</span>
+                
+                <div class="important">
+                    <h5>Conclusion</h5>
+                    <div class="formula">
+                        \[\text{Slope}_{\text{adiabatic}} = \gamma \times \left(-\frac{P}{V}\right) = \gamma \times \text{Slope}_{\text{isothermal}}\]
+                    </div>
+                    <p>Since \(\gamma = 1 + \frac{2}{f}\) (or \(\frac{C_p}{C_v}\)) and is always greater than 1 (\(\gamma > 1\)), the <strong>adiabatic curve is always steeper</strong> than the isothermal curve at any given point.</p>
                 </div>
-            </button>
-            <button onclick="showSection('unit-d')" class="nav-item w-full text-left px-4 py-3 hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-3">
-                <i class="fas fa-project-diagram w-5"></i>
-                <div>
-                    <span class="block text-sm font-semibold">Unit D</span>
-                    <span class="text-xs opacity-70">Security Landscape</span>
-                </div>
-            </button>
-            <button onclick="showSection('unit-e')" class="nav-item w-full text-left px-4 py-3 hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-3">
-                <i class="fas fa-mobile-alt w-5"></i>
-                <div>
-                    <span class="block text-sm font-semibold">Unit E</span>
-                    <span class="text-xs opacity-70">Device Security</span>
-                </div>
-            </button>
-        </nav>
-
-        <div class="p-4 border-t border-slate-700">
-            <div class="bg-slate-800 rounded p-3 text-xs text-center">
-                <p class="mb-2">Keep your systems updated!</p>
-                <div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
-                    <div class="bg-green-500 h-full w-3/4"></div>
+                
+                <div class="note">
+                    <p><strong>Important Note:</strong> Adiabatic curve ka slope hamesha jada hota hai as compared to Isothermal. </p>
+                    <p><strong>Gamma values:</strong></p>
+                    <ul>
+                        <li>Monoatomic:  \(\gamma = 1. 6\)</li>
+                        <li>Diatomic: \(\gamma = 1.4\)</li>
+                        <li>Triatomic: \(\gamma = 1.3\)</li>
+                    </ul>
+                    <p>Steepness:  Mono > Dia > Tria</p>
                 </div>
             </div>
-        </div>
-    </aside>
-
-    <!-- Main Content Area -->
-    <main class="flex-1 h-full overflow-y-auto relative scroll-smooth bg-gray-50 w-full">
-        
-        <!-- Mobile Header -->
-        <div class="md:hidden bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0 z-30 shadow-md">
-            <div class="flex items-center gap-2">
-                <i class="fas fa-shield-alt text-blue-500"></i>
-                <span class="font-bold">CyberGuide</span>
-            </div>
-            <button onclick="toggleSidebar()" class="text-white p-2">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
-        </div>
-
-        <div class="max-w-5xl mx-auto p-4 md:p-8 lg:p-12 pb-24">
             
-            <!-- Unit A -->
-            <section id="unit-a" class="content-section active">
-                <div class="mb-8">
-                    <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Unit A</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Introduction to Cyber Security</h2>
-                    <p class="text-base md:text-lg text-slate-600 leading-relaxed">Understanding the architecture of cyberspace, how the internet connects us, and the fundamental principles of protecting digital assets.</p>
+            <!-- Bulk Modulus Section -->
+            <div class="section">
+                <h4>2. Bulk Modulus of Gas</h4>
+                
+                <p>Bulk Modulus (B) is defined as:</p>
+                <div class="formula">
+                    \[B = -\frac{dP}{(dV/V)} = -V\frac{dP}{dV}\]
                 </div>
-
-                <div class="grid md:grid-cols-2 gap-6 mb-12">
-                    <div class="glass-panel bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mb-4">
-                            <i class="fas fa-cloud text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Defining Cyberspace</h3>
-                        <p class="text-slate-600 text-sm">A virtual environment with no geographical boundaries. It consists of four key layers:</p>
-                        <ul class="mt-4 space-y-2 text-sm text-slate-700">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> <strong>Physical:</strong> Hardware & Cables</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> <strong>Logical:</strong> Software & Protocols</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> <strong>Information:</strong> Data & Content</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> <strong>People:</strong> Users & Admins</li>
-                        </ul>
-                    </div>
-
-                    <div class="glass-panel bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
-                            <i class="fas fa-server text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Internet Infrastructure</h3>
-                        <p class="text-slate-600 text-sm mb-4">The internet relies on <strong>Packet Switching</strong>. Data is broken into small chunks and reassembled.</p>
-                        
-                        <!-- Mini Animation -->
-                        <div class="bg-slate-100 p-4 rounded-lg relative">
-                            <div class="flex justify-between text-xs font-bold text-slate-500 mb-1">
-                                <span>Source</span>
-                                <span>Destination</span>
-                            </div>
-                            <div class="flex justify-between items-center mb-2">
-                                <i class="fas fa-laptop text-slate-700"></i>
-                                <div class="flex-1 mx-4 packet-line">
-                                    <div class="packet"></div>
-                                    <div class="packet" style="animation-delay: 0.5s"></div>
-                                    <div class="packet" style="animation-delay: 1s"></div>
-                                </div>
-                                <i class="fas fa-server text-slate-700"></i>
-                            </div>
-                            <div class="text-center text-xs text-slate-400">Data Packets in Transit</div>
-                        </div>
+                
+                <div class="concept-box">
+                    <h5>Isothermal Bulk Modulus (\(B_{\text{iso}}\))</h5>
+                    <p>We know for an isothermal process, \(\frac{dP}{dV} = -\frac{P}{V}\).</p>
+                    <div class="formula">
+                        \[B_{\text{iso}} = -V\left(-\frac{P}{V}\right) = P\]
                     </div>
                 </div>
-
-                <div class="bg-slate-900 text-white rounded-2xl p-6 md:p-8 mb-12 relative overflow-hidden">
-                    <div class="relative z-10">
-                        <h3 class="text-2xl font-bold mb-6 text-center">The CIA Triad</h3>
-                        <div class="grid gap-6 md:grid-cols-3">
-                            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 cia-card transition-transform duration-300">
-                                <div class="text-green-400 text-3xl mb-4"><i class="fas fa-user-shield"></i></div>
-                                <h4 class="font-bold text-lg mb-2">Confidentiality</h4>
-                                <p class="text-sm text-slate-400">Keeping data secret from unauthorized users.</p>
-                            </div>
-                            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 cia-card transition-transform duration-300">
-                                <div class="text-blue-400 text-3xl mb-4"><i class="fas fa-file-contract"></i></div>
-                                <h4 class="font-bold text-lg mb-2">Integrity</h4>
-                                <p class="text-sm text-slate-400">Ensuring data is not altered or tampered with.</p>
-                            </div>
-                            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 cia-card transition-transform duration-300">
-                                <div class="text-yellow-400 text-3xl mb-4"><i class="fas fa-clock"></i></div>
-                                <h4 class="font-bold text-lg mb-2">Availability</h4>
-                                <p class="text-sm text-slate-400">Ensuring systems are running when needed.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Decorative Background -->
-                    <div class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-blue-600 rounded-full blur-3xl opacity-20"></div>
-                </div>
-            </section>
-
-            <!-- Unit B -->
-            <section id="unit-b" class="content-section">
-                <div class="mb-8">
-                    <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Unit B</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Network Defence Tools</h2>
-                    <p class="text-base md:text-lg text-slate-600 leading-relaxed">Tools and techniques used to protect network infrastructure from unauthorized access.</p>
-                </div>
-
-                <!-- Firewall Interactive -->
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 mb-8 shadow-sm">
-                    <div class="flex flex-col lg:flex-row items-center gap-8">
-                        <div class="flex-1 w-full">
-                            <h3 class="text-2xl font-bold mb-4 flex items-center gap-3">
-                                <i class="fas fa-fire text-red-500"></i> Firewalls
-                            </h3>
-                            <p class="text-slate-600 mb-4">A security device that monitors traffic and decides whether to allow or block it based on rules.</p>
-                            <div class="space-y-3">
-                                <div class="bg-slate-50 p-3 rounded border-l-4 border-blue-500">
-                                    <strong>Stateless:</strong> Inspects packets in isolation. Fast but less secure.
-                                </div>
-                                <div class="bg-slate-50 p-3 rounded border-l-4 border-purple-500">
-                                    <strong>Stateful:</strong> Remembers the context of connections. Smarter and more secure.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-1/3 flex justify-center">
-                            <!-- Responsive Diagram -->
-                            <div class="relative flex items-center">
-                                <i class="fas fa-globe text-3xl md:text-4xl text-slate-400"></i>
-                                <!-- Responsive connector lines -->
-                                <div class="mx-2 md:mx-4 w-8 md:w-24 h-1 bg-slate-200"></div>
-                                <div class="w-14 h-20 md:w-16 md:h-24 bg-red-500 rounded flex items-center justify-center text-white text-xl md:text-2xl shadow-lg firewall-shield z-10">
-                                    <i class="fas fa-bricks"></i>
-                                </div>
-                                <div class="mx-2 md:mx-4 w-8 md:w-24 h-1 bg-slate-200"></div>
-                                <i class="fas fa-laptop-house text-3xl md:text-4xl text-blue-600"></i>
-                                
-                                <!-- Animated particles being blocked -->
-                                <div class="absolute left-10 top-1/2 w-2 h-2 bg-red-500 rounded-full animate-ping hidden md:block"></div>
-                            </div>
-                        </div>
+                
+                <div class="concept-box">
+                    <h5>Adiabatic Bulk Modulus (\(B_{\text{adia}}\))</h5>
+                    <p>We know for an adiabatic process, \(\frac{dP}{dV} = -\gamma\frac{P}{V}\).</p>
+                    <div class="formula">
+                        \[B_{\text{adia}} = -V\left(-\gamma\frac{P}{V}\right) = \gamma P\]
                     </div>
                 </div>
-
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 rounded-xl shadow-lg">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold">VPN</h3>
-                            <i class="fas fa-tunnel text-blue-300 text-2xl"></i>
-                        </div>
-                        <p class="text-blue-100 text-sm mb-4">Virtual Private Networks create an encrypted "tunnel" over the public internet, masking your IP and protecting data.</p>
-                        <div class="bg-blue-900/50 p-3 rounded border border-blue-500/30 text-xs font-mono overflow-x-auto">
-                            > Establishing secure tunnel...<br>
-                            > Encrypting data packets...<br>
-                            > Connection Secure.
-                        </div>
+                
+                <div class="success-box">
+                    <h5>Conclusion</h5>
+                    <div class="formula">
+                        \[B_{\text{adiabatic}} = \gamma \cdot B_{\text{isothermal}}\]
                     </div>
-
-                    <div class="bg-white border border-slate-200 p-6 rounded-xl shadow-sm">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold">Snort (IDS)</h3>
-                            <i class="fas fa-bell text-yellow-500 text-2xl"></i>
-                        </div>
-                        <p class="text-slate-600 text-sm mb-4">An open-source Network Intrusion Detection System. It acts like a digital burglar alarm, matching traffic against known attack signatures.</p>
-                        <ul class="text-sm space-y-2 text-slate-700">
-                            <li><i class="fas fa-search text-slate-400 mr-2"></i> Packet Sniffing</li>
-                            <li><i class="fas fa-file-code text-slate-400 mr-2"></i> Traffic Logging</li>
-                            <li><i class="fas fa-exclamation-triangle text-slate-400 mr-2"></i> Real-time Alerts</li>
-                        </ul>
+                    <p>Also, Bulk Modulus is the reciprocal of compressibility:</p>
+                    <div class="formula">
+                        \[B = \frac{1}{\text{Compressibility}}\]
+                    </div>
+                    <p><em>Note:  Adiabatic processes are often "sudden" processes. </em></p>
+                </div>
+            </div>
+            
+            <!-- Mixing of Gases Section -->
+            <div class="section">
+                <h4>3. Concept of Mixing of Gases (Non-Reacting)</h4>
+                
+                <p>Let two gases with moles \(n_1, n_2\), specific heats \(C_{V1}, C_{P1}, C_{V2}, C_{P2}\) and adiabatic exponents \(\gamma_1, \gamma_2\) be mixed.</p>
+                
+                <div class="concept-box">
+                    <h5>a) Total Internal Energy of Mixture: </h5>
+                    <div class="formula">
+                        \[U_{\text{Total mix}} = U_1 + U_2\]
                     </div>
                 </div>
-            </section>
-
-            <!-- Unit C -->
-            <section id="unit-c" class="content-section">
-                <div class="mb-8">
-                    <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Unit C</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Cyber Crime & Forensics</h2>
-                    <p class="text-base md:text-lg text-slate-600 leading-relaxed">Investigating the dark side of the web: crimes, attackers, and how we catch them.</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-6 mb-12">
-                    <div class="bg-red-50 border border-red-100 p-6 rounded-xl">
-                        <h3 class="font-bold text-red-800 mb-2">Phishing</h3>
-                        <p class="text-sm text-red-600">Sending fraudulent emails pretending to be reputable companies to induce individuals to reveal personal information.</p>
+                
+                <div class="concept-box">
+                    <h5>b) Molar Specific Heat of Mixture:</h5>
+                    <p>The total internal energy change is the sum of individual changes:</p>
+                    <div class="formula">
+                        \[(n_1 + n_2)C_{V_{\text{mix}}}\,dT = n_1 C_{V1}\,dT + n_2 C_{V2}\,dT\]
                     </div>
-                    <div class="bg-red-50 border border-red-100 p-6 rounded-xl">
-                        <h3 class="font-bold text-red-800 mb-2">Malware</h3>
-                        <p class="text-sm text-red-600">"Malicious Software" designed to disrupt, damage, or gain unauthorized access to a computer system.</p>
+                    <div class="formula">
+                        \[C_{V_{\text{mix}}} = \frac{n_1 C_{V1} + n_2 C_{V2}}{n_1 + n_2}\]
                     </div>
-                    <div class="bg-red-50 border border-red-100 p-6 rounded-xl">
-                        <h3 class="font-bold text-red-800 mb-2">Hacking</h3>
-                        <p class="text-sm text-red-600">Identifying weakness in computer systems or networks to exploit its weaknesses to gain access.</p>
+                    <p>Similarly, for constant pressure: </p>
+                    <div class="formula">
+                        \[C_{P_{\text{mix}}} = \frac{n_1 C_{P1} + n_2 C_{P2}}{n_1 + n_2}\]
+                    </div>
+                    <p>The adiabatic exponent for the mixture is:</p>
+                    <div class="formula">
+                        \[\gamma_{\text{mix}} = \frac{C_{P_{\text{mix}}}}{C_{V_{\text{mix}}}}\]
                     </div>
                 </div>
-
-                <div class="bg-white shadow-lg rounded-xl overflow-hidden flex flex-col lg:flex-row">
-                    <div class="bg-slate-800 text-white p-6 md:p-8 lg:w-1/3 flex flex-col justify-center text-center lg:text-left">
-                        <i class="fas fa-microscope text-4xl md:text-5xl mb-4 text-blue-400 mx-auto lg:mx-0"></i>
-                        <h3 class="text-2xl font-bold">Digital Forensics</h3>
-                    </div>
-                    <div class="p-6 md:p-8 lg:w-2/3">
-                        <p class="text-slate-600 mb-6">The recovery and investigation of material found in digital devices.</p>
-                        
-                        <h4 class="font-bold text-slate-800 mb-4">The Chain of Custody</h4>
-                        <!-- Responsive Chain: Vertical on mobile, Horizontal on Tablet+ -->
-                        <div class="flex flex-col md:flex-row items-start md:items-center gap-4 text-sm">
-                            <div class="flex-1 flex md:block items-center gap-3 w-full md:w-auto">
-                                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center md:mx-auto mb-0 md:mb-2 text-blue-600 font-bold flex-shrink-0">1</div>
-                                <span class="md:text-center md:block w-full">Collection</span>
-                            </div>
-                            
-                            <div class="hidden md:block h-0.5 w-8 bg-slate-300"></div>
-                            <!-- Mobile Arrow -->
-                            <div class="md:hidden w-0.5 h-6 bg-slate-300 ml-5"></div>
-
-                            <div class="flex-1 flex md:block items-center gap-3 w-full md:w-auto">
-                                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center md:mx-auto mb-0 md:mb-2 text-blue-600 font-bold flex-shrink-0">2</div>
-                                <span class="md:text-center md:block w-full">Examination</span>
-                            </div>
-                            
-                            <div class="hidden md:block h-0.5 w-8 bg-slate-300"></div>
-                             <!-- Mobile Arrow -->
-                             <div class="md:hidden w-0.5 h-6 bg-slate-300 ml-5"></div>
-
-                            <div class="flex-1 flex md:block items-center gap-3 w-full md:w-auto">
-                                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center md:mx-auto mb-0 md:mb-2 text-blue-600 font-bold flex-shrink-0">3</div>
-                                <span class="md:text-center md:block w-full">Analysis</span>
-                            </div>
-                            
-                            <div class="hidden md:block h-0.5 w-8 bg-slate-300"></div>
-                             <!-- Mobile Arrow -->
-                             <div class="md:hidden w-0.5 h-6 bg-slate-300 ml-5"></div>
-
-                            <div class="flex-1 flex md:block items-center gap-3 w-full md:w-auto">
-                                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center md:mx-auto mb-0 md:mb-2 text-blue-600 font-bold flex-shrink-0">4</div>
-                                <span class="md:text-center md:block w-full">Reporting</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-             <!-- Unit D -->
-             <section id="unit-d" class="content-section">
-                <div class="mb-8">
-                    <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Unit D</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Security Landscape</h2>
-                    <p class="text-base md:text-lg text-slate-600 leading-relaxed">Mapping the terminology and advanced threats facing nations and organizations.</p>
-                </div>
-
-                <div class="bg-slate-900 text-white rounded-xl p-6 md:p-8 mb-8">
-                    <h3 class="text-xl font-bold mb-6 text-center border-b border-slate-700 pb-4">Key Terminology</h3>
-                    <div class="grid gap-4">
-                        <div class="flex items-start gap-4 p-3 hover:bg-slate-800 rounded transition-colors">
-                            <i class="fas fa-meteor text-orange-500 mt-1 flex-shrink-0"></i>
-                            <div>
-                                <strong class="block text-orange-400">Threat</strong>
-                                <span class="text-slate-400 text-sm">A potential danger (e.g., hacker, virus).</span>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-3 hover:bg-slate-800 rounded transition-colors">
-                            <i class="fas fa-door-open text-yellow-500 mt-1 flex-shrink-0"></i>
-                            <div>
-                                <strong class="block text-yellow-400">Vulnerability</strong>
-                                <span class="text-slate-400 text-sm">A weakness or gap in security (e.g., weak password).</span>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-3 hover:bg-slate-800 rounded transition-colors">
-                            <i class="fas fa-exclamation-triangle text-red-500 mt-1 flex-shrink-0"></i>
-                            <div>
-                                <strong class="block text-red-400">Risk</strong>
-                                <span class="text-slate-400 text-sm">The potential for loss when a threat exploits a vulnerability.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-xl border-l-4 border-red-600 shadow-sm">
-                        <h3 class="font-bold text-lg mb-2">Cyber Warfare</h3>
-                        <p class="text-slate-600 text-sm">Internet-based conflict involving politically motivated attacks by a nation-state on another nation. The goal is often sabotage or espionage.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border-l-4 border-orange-500 shadow-sm">
-                        <h3 class="font-bold text-lg mb-2">Critical Infrastructure</h3>
-                        <p class="text-slate-600 text-sm">Securing assets essential for society, such as power grids, water supplies, and hospitals. Attacks here can cause physical harm.</p>
-                    </div>
-                </div>
-            </section>
-
-             <!-- Unit E -->
-             <section id="unit-e" class="content-section">
-                <div class="mb-8">
-                    <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Unit E</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Device Security & Best Practices</h2>
-                    <p class="text-base md:text-lg text-slate-600 leading-relaxed">Practical steps to secure endpoints, mobiles, and personal data.</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-xl shadow-sm text-center group hover:-translate-y-1 transition-transform">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-100 transition-colors">
-                            <i class="fas fa-key text-2xl text-blue-600"></i>
-                        </div>
-                        <h3 class="font-bold mb-2">Password Policy</h3>
-                        <p class="text-xs text-slate-500">Complex passwords, no reuse, and enable Multi-Factor Authentication (MFA).</p>
-                    </div>
+            </div>
+            
+            <!-- Questions Section -->
+            <div class="section">
+                <h3>Practice Questions</h3>
+                
+                <!-- Question 1 -->
+                <div class="question-block">
+                    <div class="question-header">QUESTION 01:  Conversion of Graphs</div>
+                    <p>A cyclic process ABCD is shown in the P-V diagram. Which of the following curves represent the same process?</p>
                     
-                    <div class="bg-white p-6 rounded-xl shadow-sm text-center group hover:-translate-y-1 transition-transform">
-                        <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-100 transition-colors">
-                            <i class="fas fa-sync text-2xl text-green-600"></i>
-                        </div>
-                        <h3 class="font-bold mb-2">Patch Management</h3>
-                        <p class="text-xs text-slate-500">Regularly update OS and software to fix security holes.</p>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-xl shadow-sm text-center group hover:-translate-y-1 transition-transform">
-                        <div class="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-100 transition-colors">
-                            <i class="fas fa-hdd text-2xl text-purple-600"></i>
-                        </div>
-                        <h3 class="font-bold mb-2">Data Backup</h3>
-                        <p class="text-xs text-slate-500">The 3-2-1 Rule: 3 copies, 2 media types, 1 offsite.</p>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-slate-800 to-slate-900 text-white rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2">Secure your Wi-Fi</h3>
-                        <ul class="text-sm space-y-1 opacity-80">
-                            <li><i class="fas fa-check text-green-400 mr-2"></i> Use WPA2 or WPA3</li>
-                            <li><i class="fas fa-check text-green-400 mr-2"></i> Change default passwords</li>
-                            <li><i class="fas fa-times text-red-400 mr-2"></i> Disable WPS</li>
+                    <div class="solution">
+                        <h5>Analysis of P-V diagram:</h5>
+                        <ul>
+                            <li><strong>A → B: </strong> Isobaric process (P = constant), Volume increases.  Since \(V \propto T\), Temperature increases.</li>
+                            <li><strong>B → C: </strong> Not a standard process. Pressure decreases, Volume increases. </li>
+                            <li><strong>C → D:</strong> Isochoric process (V = constant), Pressure decreases. Since \(P \propto T\), Temperature decreases.</li>
+                            <li><strong>D → A:</strong> Not a standard process. </li>
                         </ul>
+                        
+                        <h5>Analysis of P-T options:</h5>
+                        <ul>
+                            <li><strong>A → B:</strong> P is constant, T increases. This is a horizontal line moving to the right.</li>
+                            <li><strong>C → D:</strong> V is constant.  Since \(P \propto T\), this is a straight line passing through the origin.  Pressure decreases, so temperature must also decrease.</li>
+                        </ul>
+                        
+                        <div class="answer-box">Correct Answer: Option 1</div>
                     </div>
-                    <i class="fas fa-wifi text-6xl opacity-20"></i>
                 </div>
-            </section>
-
+                
+                <!-- Question 2 -->
+                <div class="question-block">
+                    <div class="question-header">QUESTION 02</div>
+                    <p>A cyclic process ABCA is shown in P-T diagram. When presented on P-V, it would? </p>
+                    
+                    <div class="solution">
+                        <h5>Analysis of P-T diagram:</h5>
+                        <ul>
+                            <li><strong>A → B:</strong> Isobaric process (P = constant), Temperature increases. From \(V \propto T\), Volume increases.  This is a horizontal line on a P-V diagram.</li>
+                            <li><strong>B → C: </strong> Isothermal process (T = constant). From \(PV = \text{constant}\), \(P \propto \frac{1}{V}\). This is a rectangular hyperbola.  Pressure decreases, so Volume increases.</li>
+                            <li><strong>C → A:</strong> V = constant process. Since \(P \propto T\), pressure decreases as temperature decreases. This is a vertical line on a P-V diagram.</li>
+                        </ul>
+                        
+                        <div class="answer-box">Correct Answer: Option 3 (Isobaric expansion → Isothermal expansion → Isochoric pressure drop)</div>
+                    </div>
+                </div>
+                
+                <!-- Question 3 -->
+                <div class="question-block">
+                    <div class="question-header">QUESTION 03</div>
+                    <p>A cyclic process ABCA is shown in the V-T diagram. Process on the P-V diagram is?</p>
+                    
+                    <div class="solution">
+                        <h5>Analysis of V-T diagram:</h5>
+                        <ul>
+                            <li><strong>A → B:</strong> \(V \propto T\). This is a line through the origin, representing an Isobaric process (P = constant). Volume increases. </li>
+                            <li><strong>B → C:</strong> Isochoric process (V = constant). Temperature decreases.  From \(P \propto T\), pressure decreases.</li>
+                            <li><strong>C → A:</strong> Isothermal process (T = constant). Volume decreases.</li>
+                        </ul>
+                        
+                        <div class="answer-box">Correct Answer: Option 3 (Isobaric expansion → Isochoric pressure drop → Isothermal compression)</div>
+                    </div>
+                </div>
+                
+                <!-- Question 4 -->
+                <div class="question-block">
+                    <div class="question-header">QUESTION 04 (JEE Main-2017)</div>
+                    <p>\(C_p\) and \(C_v\) are specific heats at constant pressure and constant volume respectively. It is observed that \(C_p - C_v = a\) for hydrogen gas and \(C_p - C_v = b\) for nitrogen gas. The correct relation between a and b is:</p>
+                    <ol>
+                        <li>a = 14b</li>
+                        <li>a = 28b</li>
+                        <li>a = 1/14b</li>
+                        <li>a = b</li>
+                    </ol>
+                    
+                    <div class="solution">
+                        <h5>Solution:</h5>
+                        <p>The relation for molar specific heats is \(C_P - C_V = R\), which is independent of the gas. </p>
+                        <p>The question gives specific heats (per unit mass), denoted by lowercase \(c_p, c_v\). The relation is:</p>
+                        <div class="formula">
+                            \[c_p - c_v = \frac{R}{M}\]
+                        </div>
+                        <p>where M is the molar mass. </p>
+                        
+                        <p><strong>For Hydrogen (\(H_2\)):</strong> M = 2 g/mol</p>
+                        <div class="formula">
+                            \[a = c_p - c_v = \frac{R}{2}\]
+                        </div>
+                        
+                        <p><strong>For Nitrogen (\(N_2\)):</strong> M = 28 g/mol</p>
+                        <div class="formula">
+                            \[b = c_p - c_v = \frac{R}{28}\]
+                        </div>
+                        
+                        <p>To find the relation between a and b: </p>
+                        <div class="formula">
+                            \[\frac{a}{b} = \frac{R/2}{R/28} = \frac{28}{2} = 14\]
+                            \[a = 14b\]
+                        </div>
+                        
+                        <div class="answer-box">Correct Answer: 1 (a = 14b)</div>
+                    </div>
+                </div>
+                
+                <!-- Question 5 -->
+                <div class="question-block">
+                    <div class="question-header">QUESTION 05</div>
+                    <p>The volume of a diatomic gas with \(\gamma = 1.5\) is changed adiabatically from 16 ltrs to 12 ltrs. Find the ratio of final and initial pressure and temperature.</p>
+                    
+                    <div class="solution">
+                        <h5>Solution:</h5>
+                        <p><strong>Given:</strong> \(\gamma = 1.5 = 3/2\), \(V_i = 16\) L, \(V_f = 12\) L.</p>
+                        
+                        <h5>Pressure Ratio:</h5>
+                        <p>For an adiabatic process, \(P_i V_i^\gamma = P_f V_f^\gamma\).</p>
+                        <div class="formula">
+                            \[\frac{P_f}{P_i} = \left(\frac{V_i}{V_f}\right)^\gamma = \left(\frac{16}{12}\right)^{3/2} = \left(\frac{4}{3}\right)^{3/2} = \frac{\sqrt{4^3}}{\sqrt{3^3}} = \frac{8}{3\sqrt{3}}\]
+                        </div>
+                        
+                        <h5>Temperature Ratio:</h5>
+                        <p>For an adiabatic process, \(T_i V_i^{\gamma-1} = T_f V_f^{\gamma-1}\).</p>
+                        <div class="formula">
+                            \[\frac{T_f}{T_i} = \left(\frac{V_i}{V_f}\right)^{\gamma-1} = \left(\frac{16}{12}\right)^{0.5} = \left(\frac{4}{3}\right)^{0.5} = \sqrt{\frac{4}{3}} = \frac{2}{\sqrt{3}}\]
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 6 -->
+                <div class="question-block">
+                    <div class="question-header">QUESTION 06</div>
+                    <p>A sample of 2kg of He is taken through the process ABC and another sample of 2Kg of same gas is taken through the process ADC as shown.  How much is heat absorbed in process ABC and ADC. </p>
+                    
+                    <div class="solution">
+                        <h5>Given Data:</h5>
+                        <ul>
+                            <li>Gas:  He (Monoatomic), M = 4 g/mol, f = 3</li>
+                            <li>\(C_V = \frac{3}{2}R\), \(C_P = \frac{5}{2}R\)</li>
+                            <li>Mass = 2 kg = 2000 g</li>
+                            <li>Number of moles, \(n = \frac{2000}{4} = 500\) mol</li>
+                        </ul>
+                        
+                        <h5>From P-V diagram:</h5>
+                        <ul>
+                            <li>A:  \((10 \text{ m}^3, 5 \times 10^4 \text{ N/m}^2)\)</li>
+                            <li>B: \((10 \text{ m}^3, 10 \times 10^4 \text{ N/m}^2)\)</li>
+                            <li>C: \((20 \text{ m}^3, 10 \times 10^4 \text{ N/m}^2)\)</li>
+                            <li>D:  \((20 \text{ m}^3, 5 \times 10^4 \text{ N/m}^2)\)</li>
+                        </ul>
+                        
+                        <h5>Process ABC:</h5>
+                        <p><strong>A → B (Isochoric heating):</strong></p>
+                        <div class="formula">
+                            \[\Delta Q_{AB} = \frac{C_V}{R}(P_B - P_A)V_A = 1.5 \times 5 \times 10^5 = 7.5 \times 10^5 \text{ J}\]
+                        </div>
+                        
+                        <p><strong>B → C (Isobaric expansion):</strong></p>
+                        <div class="formula">
+                            \[\Delta Q_{BC} = \frac{C_P}{R}P_B(V_C - V_B) = 2. 5 \times 10 \times 10^5 = 25 \times 10^5 \text{ J}\]
+                        </div>
+                        
+                        <div class="answer-box">Total Heat for ABC: \(\Delta Q_{ABC} = 32.5 \times 10^5\) J</div>
+                        
+                        <h5>Process ADC:</h5>
+                        <p>Using First Law:  \(\Delta Q_{ADC} = \Delta U_{ADC} + W_{ADC}\)</p>
+                        
+                        <p><strong>Internal Energy Change:</strong></p>
+                        <div class="formula">
+                            \[\Delta U_{ADC} = 1.5 \times 15 \times 10^5 = 22.5 \times 10^5 \text{ J}\]
+                        </div>
+                        
+                        <p><strong>Work Done:</strong></p>
+                        <div class="formula">
+                            \[W_{ADC} = 5 \times 10^5 \text{ J}\]
+                        </div>
+                        
+                        <div class="answer-box">Total Heat for ADC:  \(\Delta Q_{ADC} = 27. 5 \times 10^5\) J</div>
+                    </div>
+                </div>
+                
+                <!-- Question 8 -->
+                <div class="question-block">
+                    <div class="question-header">QUESTION 08</div>
+                    <p>Two moles of an ideal gas at temperature \(T_0 = 300\) K were cooled isochorically so that gas pressure reduced by n = 2 times. Then by isobaric process the gas expands till its temperature gets back to its initial value. Find the total heat absorbed in this process.</p>
+                    
+                    <div class="solution">
+                        <h5>Process Breakdown:</h5>
+                        
+                        <p><strong>Initial State (1):</strong> \(P_0, V_0, T_0 = 300\) K, \(n = 2\) mol</p>
+                        
+                        <p><strong>Isochoric Cooling (1 → 2):</strong></p>
+                        <ul>
+                            <li>\(V_2 = V_0\), \(P_2 = P_0/2\)</li>
+                            <li>Since \(P \propto T\) for isochoric, \(T_2 = T_0/2 = 150\) K</li>
+                            <li>Heat exchanged: \(\Delta Q_1 = nC_V\Delta T = 2C_V(150 - 300) = -300C_V\) (Heat rejected)</li>
+                        </ul>
+                        
+                        <p><strong>Isobaric Heating (2 → 3):</strong></p>
+                        <ul>
+                            <li>\(P_3 = P_2 = P_0/2\), \(T_3 = T_0 = 300\) K</li>
+                            <li>Heat exchanged: \(\Delta Q_2 = nC_P\Delta T = 2C_P(300 - 150) = 300C_P\) (Heat absorbed)</li>
+                        </ul>
+                        
+                        <h5>Total Heat Absorbed:</h5>
+                        <div class="formula">
+                            \[\Delta Q_{\text{Total}} = -300C_V + 300C_P = 300(C_P - C_V) = 300R\]
+                        </div>
+                        
+                        <div class="answer-box">Total Heat Absorbed: 300R</div>
+                    </div>
+                </div>
+                
+                <!-- Question 10 -->
+                <div class="question-block">
+                    <div class="question-header">QUESTION 10 (HC Verma)</div>
+                    <p>Consider the cyclic process ABCA as shown.  An ideal gas 2 moles undergoes this.  A total of 1200 J heat is rejected by the gas in the complete cycle. Find the work done by the gas during process BC.</p>
+                    
+                    <div class="solution">
+                        <h5>Given Data:</h5>
+                        <ul>
+                            <li>\(n = 2\) mol</li>
+                            <li>\(\Delta Q_{\text{cycle}} = -1200\) J (heat is rejected)</li>
+                            <li>For a cyclic process, \(\Delta U_{\text{cycle}} = 0\)</li>
+                        </ul>
+                        
+                        <p>From First Law: \(\Delta Q_{\text{cycle}} = W_{\text{cycle}} \Rightarrow W_{\text{cycle}} = -1200\) J</p>
+                        
+                        <h5>Analysis of Processes:</h5>
+                        <ul>
+                            <li><strong>A → B (Isobaric):</strong> \(W_{AB} = nR(T_B - T_A) = 2 \times 8.314 \times (500 - 300) = 3325.6\) J</li>
+                            <li><strong>C → A (Isochoric):</strong> \(W_{CA} = 0\)</li>
+                        </ul>
+                        
+                        <p>Total Work:  \(W_{\text{cycle}} = W_{AB} + W_{BC} + W_{CA}\)</p>
+                        <div class="formula">
+                            \[-1200 = 3325.6 + W_{BC}\]
+                            \[W_{BC} = -1200 - 3325.6 = -4525.6 \text{ J}\]
+                        </div>
+                        
+                        <div class="answer-box">Work Done BC: -4525.6 J</div>
+                    </div>
+                </div>
+                
+                <!-- Question 13 -->
+                <div class="question-block">
+                    <div class="question-header">QUESTION 13 (JEE Main-2020)</div>
+                    <p>An engine operates by taking a monatomic ideal gas through the cycle shown in the figure. The percentage efficiency of the engine is close to... </p>
+                    
+                    <div class="solution">
+                        <h5>Cycle Analysis:</h5>
+                        
+                        <p><strong>A → B (Isochoric Heating):</strong></p>
+                        <div class="formula">
+                            \[\Delta Q_{AB} = 3P_0V_0\]
+                        </div>
+                        
+                        <p><strong>B → C (Isobaric Expansion):</strong></p>
+                        <div class="formula">
+                            \[\Delta Q_{BC} = 7. 5P_0V_0\]
+                        </div>
+                        
+                        <p><strong>Total Heat Absorbed:</strong></p>
+                        <div class="formula">
+                            \[Q_{\text{in}} = 3P_0V_0 + 7.5P_0V_0 = 10.5P_0V_0\]
+                        </div>
+                        
+                        <p><strong>Work Done:</strong></p>
+                        <div class="formula">
+                            \[W = \text{Area of rectangle} = (3P_0 - P_0)(2V_0 - V_0) = 2P_0V_0\]
+                        </div>
+                        
+                        <h5>Efficiency:</h5>
+                        <div class="formula">
+                            \[\eta = \frac{W}{Q_{\text{in}}} \times 100 = \frac{2P_0V_0}{10.5P_0V_0} \times 100 = \frac{2}{10.5} \times 100 \approx 19\%\]
+                        </div>
+                        
+                        <div class="answer-box">Efficiency: ≈ 19%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Homework Section -->
+            <div class="section">
+                <div class="homework">
+                    <h3>Homework From PRAYAS Module</h3>
+                    <h4>Module 2: Thermal Properties of Matter</h4>
+                    <ul>
+                        <li>Train your brain: 1 to 28</li>
+                        <li>Concept Application: 1 to 26</li>
+                        <li>Prarambh: 1 to 31</li>
+                        <li>Prabal: 1 to 34</li>
+                        <li>Parikshit: complete</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Promotional Section -->
+            <div class="section">
+                <div class="promo">
+                    <h3>REAL TEST SERIES For JEE</h3>
+                    <h4>Right Evaluation & Assessment For Learning</h4>
+                    <p>✓ Closest to the actual JEE Exam</p>
+                    <p>✓ Diverse Questions, Real-time Exam Pressure, Detailed Post-exam Analysis</p>
+                    <p>✓ Experience CBT Based Test at Offline Centers</p>
+                    <p>✓ 45,000+ Students are gearing up</p>
+                    <p>✓ Happening in 250+ Cities across India</p>
+                    <p>✓ 22 Printed Tests with OMR Sheets delivered to your home</p>
+                    <hr style="margin: 20px 0; border: 1px solid white;">
+                    <h4>Prayas JEE 2025 AITS (All India Test Series)</h4>
+                    <p>Total Tests: Main:  09, Advance: 07</p>
+                    <p>First AITS: 22 Sept 2024</p>
+                    <p>Language: English & Hindi</p>
+                    <hr style="margin: 20px 0; border: 1px solid white;">
+                    <h4>Physics Wallah Publications</h4>
+                    <p><strong>JEE Advanced With Main (47+124):</strong> Chapter-wise and topic-wise solved papers of JEE Advanced (Past 47 years) and JEE Main (all shifts) from 2019 to 2024.</p>
+                    <p><strong>6 Years JEE Main (All 124 Shifts):</strong> Topic-wise Analysis of Past 6 Years Questions with 3500+ PYQ. </p>
+                </div>
+            </div>
         </div>
-    </main>
-
-    <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Show target section
-            document.getElementById(sectionId).classList.add('active');
-
-            // Update nav styling
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            event.currentTarget.classList.add('active');
-            
-            // Mobile: Close sidebar after selection
-            if(window.innerWidth < 768) {
-                toggleSidebar();
-            }
-        }
-
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            
-            // Toggle translate class
-            if (sidebar.classList.contains('-translate-x-full')) {
-                // Open Sidebar
-                sidebar.classList.remove('-translate-x-full');
-                overlay.classList.remove('hidden');
-            } else {
-                // Close Sidebar
-                sidebar.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-            }
-        }
-    </script>
+        
+        <footer>
+            THANK YOU
+        </footer>
+    </div>
 </body>
 </html>
